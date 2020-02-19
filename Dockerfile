@@ -5,7 +5,7 @@ RUN npm install
 RUN npm run build
 
 FROM nginx:alpine 
-COPY ./dist /usr/share/nginx/html
-COPY ./index.html /usr/share/nginx/html
+COPY . /usr/share/nginx/html
+# COPY ./index.html /usr/share/nginx/html
 
 # ENTRYPOINT npm install && npm run dev
