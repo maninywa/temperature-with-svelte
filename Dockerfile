@@ -6,6 +6,6 @@ RUN npm run build
 
 FROM nginx:alpine 
 COPY . /usr/share/nginx/html
-# COPY ./index.html /usr/share/nginx/html
 
-# ENTRYPOINT npm install && npm run dev
+# EXPOSE 5000 
+# ENTRYPOINT npm run serve
