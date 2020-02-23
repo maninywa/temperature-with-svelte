@@ -1,7 +1,7 @@
 <section>
   {#if weatherDetails}
     <div class="card-container">
-      <Card class="gridContent">
+      <Card style="width: 50%;">
         <PrimaryAction>
           <Content class="mdc-typography--body2">
             <h2 class="mdc-typography--headline6" style="margin: 0;">{weatherDetails.name}</h2>
@@ -10,8 +10,8 @@
             <img src="https://openweathermap.org/img/wn/{weatherDetails.weather[0].icon}@2x.png" alt="Italian Trulli" width="50px">
           </Content>
         </PrimaryAction>
-        <Actions>
-          <ActionButtons>
+        <!-- <Actions> -->
+          <!-- <ActionButtons>
             <Button >
               <Label>Action</Label>
             </Button>
@@ -26,8 +26,8 @@
             </IconButton>
             <IconButton class="material-icons"  title="Share">share</IconButton>
             <IconButton class="material-icons"  title="More options">more_vert</IconButton>
-          </ActionIcons>
-        </Actions>
+          </ActionIcons> -->
+        <!-- </Actions> -->
       </Card>
     </div>
     {:else}
@@ -57,38 +57,14 @@
 </script>
 
 <style>
-  .gridContent {
-    width: 100%;
-    height: 100%;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: large;
-  }
   .card-container {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     min-height: 200px;
-    min-width: 200px;
-    background-color: #9eb8ff;
+    min-width: 300px;
+    background-color: white;
     /* margin-right: 20px;
     margin-bottom: 20px; */
-  }
-  .card-container.short {
-    min-height: 200px;
-  }
-  * :global(.card-media-16x9) {
-    background-image: url(https://via.placeholder.com/320x180.png?text=16x9);
-  }
-  * :global(.card-media-square) {
-    background-image: url(https://via.placeholder.com/320x320.png?text=square);
-  }
-  .weatherImage {
-    width: 50px;
-    height: 50px;
-    min-height: 30px;
-    min-width: 30px;
   }
 </style>
