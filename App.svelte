@@ -1,35 +1,41 @@
-<WeatherCard/>
-
-
 <script>
-  import TopAppBar, {Row, Section, Title} from '@smui/top-app-bar';
+  import Grid from "svelte-grid";
+  import gridHelp from "svelte-grid/build/helper/index.mjs"; 
   import WeatherCard from './components/WeatherCard.svelte';
+
+  const id = () =>
+  "_" +
+  Math.random()
+    .toString(36)
+    .substr(2, 9);
+  
+  let items_arr = [
+    gridHelp.item({ x: 0, y: 0, w: 1, h: 1, id: id() }),
+    gridHelp.item({ x: 2, y: 0, w: 1, h: 1, id: id() }),
+    gridHelp.item({ x: 0, y: 2, w: 1, h: 1, id: id() }),
+    gridHelp.item({ x: 2, y: 2, w: 1, h: 1, id: id() })
+    ];
 </script>
 
+<Grid {items_arr} bind:items={items_arr} cols={8} let:item rowHeight={200} gap={10}>
+  <WeatherCard style="background: {item.static ? '#cce' : '#ccc'};border:1px solid black;"/>
+</Grid>
+
+
+
+
 <style>
-  .top-app-bar-container, .top-app-bar-iframe {
-    max-width: 100%;
-    min-width: 100%;
-    height: 100%;
-    border: 1px solid rgba(0,0,0,.1);
-    margin: 0 18px 18px 0;
+  :global(.svlt-grid-shadow) {
+    background: pink;
   }
-  .top-app-bar-container {
-    overflow: auto;    
-    display: inline-block;
+  :global(.svlt-grid-container) {
+    background: white;
   }
-  .flexy {
+  .link {
     display: flex;
-    flex-wrap: wrap;
+    padding-bottom: 20px;
   }
-  .flexor {
-    display: inline-flex;
-    flex-direction: column;
-  }
-  .flexor-content {
-    flex-basis: 0;
-    height: 0;
-    flex-grow: 1;
-    overflow: auto;
+  .link a {
+    margin-left: 10px;
   }
 </style>

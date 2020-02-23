@@ -1,47 +1,37 @@
-<svelte:head>
-  <title>Cards - SMUI</title>
-</svelte:head>
-
 <section>
   {#if weatherDetails}
     <div class="card-container">
-      <Card style="width: 450px;">
-        <PrimaryAction on:click={() => clicked++}>
+      <Card class="gridContent">
+        <PrimaryAction>
           <Content class="mdc-typography--body2">
             <h2 class="mdc-typography--headline6" style="margin: 0;">{weatherDetails.name}</h2>
-            <h3 class="mdc-typography--subtitle2" style="margin: 0 0 10px; color: #888;">Land: {weatherDetails.sys.country} Id: {weatherDetails.sys.id}</h3>
-            <List>
-              {#each weatherDetails.weather as weatherEntry}
-                <Item>
-                  <img src="https://openweathermap.org/img/wn/{weatherEntry.icon}@2x.png" alt="Italian Trulli" width="50px">
-                  <Text>expectation: {weatherEntry.main}; descr: {weatherEntry.description}</Text>
-                </Item>
-              {/each}
-            </List>
+            <h3 class="mdc-typography--subtitle2" style="margin: 0 0 10px; color: #888;">{weatherDetails.sys.country} ({weatherDetails.sys.id})</h3>
+            {weatherDetails.weather[0].main}, {weatherDetails.weather[0].description}
+            <img src="https://openweathermap.org/img/wn/{weatherDetails.weather[0].icon}@2x.png" alt="Italian Trulli" width="50px">
           </Content>
         </PrimaryAction>
         <Actions>
-          <!-- <ActionButtons>
-            <Button on:click={() => clicked++}>
+          <ActionButtons>
+            <Button >
               <Label>Action</Label>
             </Button>
-            <Button on:click={() => clicked++}>
+            <Button >
               <Label>Another</Label>
             </Button>
           </ActionButtons>
           <ActionIcons>
-            <IconButton on:click={() => clicked++} toggle aria-label="Add to favorites" title="Add to favorites">
+            <IconButton  toggle aria-label="Add to favorites" title="Add to favorites">
               <Icon class="material-icons" on>favorite</Icon>
               <Icon class="material-icons">favorite_border</Icon>
             </IconButton>
-            <IconButton class="material-icons" on:click={() => clicked++} title="Share">share</IconButton>
-            <IconButton class="material-icons" on:click={() => clicked++} title="More options">more_vert</IconButton>
-          </ActionIcons> -->
+            <IconButton class="material-icons"  title="Share">share</IconButton>
+            <IconButton class="material-icons"  title="More options">more_vert</IconButton>
+          </ActionIcons>
         </Actions>
       </Card>
     </div>
     {:else}
-    <p>.....loading.....</p>
+    <p>.....loading weather cards.....</p>
   {/if}
 </section>
 
@@ -52,11 +42,8 @@
   import IconButton, {Icon} from '@smui/icon-button';
   import List, {Item, Text, Graphic} from '@smui/list';
 
-
-
-let weatherDetails;
-
-
+  let weatherDetails;
+  
   onMount(async()=>{
     const zip = '86150', 
     appid = '2b015c78c42b316407812b7344742790',
@@ -70,18 +57,27 @@ let weatherDetails;
 </script>
 
 <style>
+  .gridContent {
+    width: 100%;
+    height: 100%;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+  }
   .card-container {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    min-height: 500px;
-    min-width: 380px;
-    background-color: #ffffff;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    min-height: 200px;
+    min-width: 200px;
+    background-color: #9eb8ff;
+    /* margin-right: 20px;
+    margin-bottom: 20px; */
   }
   .card-container.short {
-    min-height: 400px;
+    min-height: 200px;
   }
   * :global(.card-media-16x9) {
     background-image: url(https://via.placeholder.com/320x180.png?text=16x9);
