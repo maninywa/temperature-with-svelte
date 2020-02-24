@@ -2,6 +2,17 @@
   import Grid from "svelte-grid";
   import gridHelp from "svelte-grid/build/helper/index.mjs"; 
   import WeatherCard from './components/WeatherCard.svelte';
+  import WeatherModel from './components/Weather.model'
+
+  async function initWeatherModel(){
+    const a = WeatherModel.createWeatherByZipCode('86150');
+    await a.getCurrentWeather();
+    console.log(a);
+    debugger;
+    return a;
+  };
+
+  initWeatherModel();
 
   const id = () =>
   "_" +
